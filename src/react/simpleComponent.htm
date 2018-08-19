@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>Simple Component</title>
+    <script src="https://fb.me/react-with-addons-0.14.3.js"></script>
+    <script src="https://fb.me/react-dom-0.14.3.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+
+    <div id="content"> <div>
+    <script type="text/babel">       
+       
+       /*
+        Component is created by React.createClass(). 
+        This takes an object which has a property render function. 
+        Return of render() is content of component.
+        Note: A component can return only one parent element. 
+       */
+
+       var nameCompObject = {render: function() {
+           return <h1>This is name Component</h1>
+       }}
+
+       var NameComponent = React.createClass(nameCompObject);
+       //render() can render only one component.
+       ReactDOM.render(<NameComponent/>, document.getElementById("content"));
+    </script>
+    
+</body>
+</html>

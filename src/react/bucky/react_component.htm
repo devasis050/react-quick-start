@@ -19,10 +19,17 @@
         Return of render() is content of component.
         Note: A component can return only one parent element. 
        */
-
+        
+       /* If we call any method in JSX the return type will be rendered*/
+       
        var nameCompObject = {render: function() {
-           return <h1>This is name Component</h1>
-       }}
+           return <h1>{this.getText()}</h1>
+
+        },
+
+        getText: function () {return "This is name Component";}
+
+       };
 
        var NameComponent = React.createClass(nameCompObject);
        //render() can render only one component.

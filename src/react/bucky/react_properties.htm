@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>React Props</title>
+    <script src="https://fb.me/react-with-addons-0.14.3.js"></script>
+    <script src="https://fb.me/react-dom-0.14.3.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+
+    <div id="content"> <div>
+    <script type="text/babel"> 
+        
+        /*Properties are like attributes in html elements. 
+          Properties can be accessed by using this.props.{propertyName} inside react component.
+        */
+
+        var MovieComp = React.createClass(
+            { 
+                render: function(params) {
+                    return (
+                        <div>
+                            <h1>{this.props.name}</h1>
+                            <h2>{this.props.genre}</h2>
+                        </div>
+                    )
+                }
+            }
+        )
+        
+        var MoviesComponent = React.createClass(
+            {
+                render: function() {
+                    return (
+                        <div> 
+                            <MovieComp name="Hulk" genre="Action"/>
+                            <MovieComp name="The Ring" genre="Horror"/> 
+                        </div>
+                    ) 
+                }
+            }
+        )
+
+        ReactDOM.render(<MoviesComponent/>, document.getElementById("content"));
+    </script>
+    
+</body>
+</html>

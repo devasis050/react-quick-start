@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <script src="https://fb.me/react-with-addons-0.14.3.js"></script>
+        <script src="https://fb.me/react-dom-0.14.3.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+        
+    <script type="text/babel">
+        
+        /*
+            Need to understand how this works in multiple component. Below the method printMyText is 
+            executed in child contest but this refers to parent context where the method is passed.
+        */
+
+        var Comment = React.createClass({
+            getInitialState : function() 
+            {
+                return {
+                    myText: "Child"
+                }
+            },
+            printMyText1 : function()
+            {
+                console.log("My text" + this.state.myText);
+            },
+
+            render: function () {
+                return (<div onClick={this.printMyText1} onDoubleClick={this.props.printMyText}>
+                            {this.props.text}
+                        </div>)
+            }
+        })
+
+        
+
+        var Board = React.createClass({
+            getInitialState : function()
+            {
+                return {
+                            comments : ["Hello ji", "Hi ji"],
+                            buttonText: "Add",
+                            inputTextStyle : {
+                                display : 'none'
+                            },
+                            myText : "Parent"
+                        };
+                
+            },
+
+            printMyText : function()
+            {
+                console.log("My text" + this.state.myText);
+            },
+
+            onClickHandler : function (text) 
+            {
+                if(this.refs.button.value === "Add")
+                {
+                    this.setState({
+                        buttonText: "Save",
+                        inputTextStyle : {
+                            display : "block"
+                        }
+                    })
+                }
+                if(this.refs.button.value === "Save")
+                {
+                    let newComment= this.refs.newComment.value;
+                    this.setState({
+                        comments : [newComment, ...this.state.comments],
+                        buttonText: "Add",
+                        inputTextStyle : {
+                            display : 'none'
+                        }
+                    })
+                }
+                console.log(this.refs.button.value)
+            },
+
+            render : function() 
+            {
+                return (<div>{this.state.comments.map((t) => <Comment text={t} printMyText={this.printMyText}/>)}
+                            <input type="text" ref="newComment" style={this.state.inputTextStyle}/>
+                            <input type="button" ref="button" value={this.state.buttonText} onClick={this.onClickHandler}></input>
+                        </div>)
+            }
+        })
+
+        
+        ReactDOM.render(<Board/>, document.getElementById("content"));
+    </script>
+
+    <div id="content"> Hey</div>
+
+</body>
+</html>

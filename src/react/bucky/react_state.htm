@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>React Demo1</title>
+    <script src="https://fb.me/react-with-addons-0.14.3.js"></script>
+    <script src="https://fb.me/react-dom-0.14.3.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+
+    <div id="content"> <div>
+    <script type="text/babel">
+        /*
+            Whenever state changes the component is re-rendered. 
+             This in react refers to component in React.
+        */
+        var CheckBox = React.createClass(
+            {
+                getInitialState:function()
+                {
+                    return {checked:false}
+                },
+
+                onChangeHandler:function()
+                {
+                    this.setState({checked: !this.state.checked})
+                },
+
+                render: function()
+                {
+                    var msg;
+                    if(this.state.checked)
+                    {
+                        console.log("Message changed");
+                        msg="Checked";
+                    }
+                    else
+                    {
+                        console.log("Message changed");
+                        msg="Unchecked";
+                    }
+                    return (
+                        <div>
+                            <input type="CheckBox" checked={this.state.checked} 
+                            onChange={this.onChangeHandler}></input>
+
+                            <div>The check box is {msg}</div>
+                        </div>
+                    )
+                }
+            }
+            
+        ) 
+
+        ReactDOM.render(<CheckBox/>, document.getElementById("content"));
+    </script>
+    
+</body>
+</html>
